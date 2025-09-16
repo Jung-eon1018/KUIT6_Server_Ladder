@@ -14,6 +14,7 @@ public class Ladder {
 
         //(row, col) 좌표를 받으면 무조건 그 좌표로 부터 오른쪽으로 한 칸의 선을 긋는다.
         //이미 존재?
+
         if(rows[row][col] == 1){
             throw new IllegalStateException("이미 라인이 있음");
         }
