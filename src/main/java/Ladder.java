@@ -2,10 +2,11 @@ package main.java;
 
 public class Ladder {
 
+    //todo 사다리 책임 분배
     private final Row[] rows;
     private final int numberOfPerson;
 
-
+    //todo int 타입 포장(numberOfPerson)
     public Ladder(int numberOfRows, int numberOfPerson) {
         if (numberOfRows <= 0) throw new IllegalArgumentException("행(층) 수는 1 이상이어야 합니다.");
         this.numberOfPerson = numberOfPerson;
@@ -21,7 +22,7 @@ public class Ladder {
 
         rows[row].drawLine(col);
     }
-
+    //todo int 타입 포장(Position)
     public int run(int startLine){
         if (startLine < 1 || startLine > numberOfPerson) {
             throw new IllegalArgumentException("시작 번호가 범위를 벗어남");
