@@ -103,6 +103,7 @@ class LadderTest {
         assertEquals(2, c);
         assertEquals(4, d);
     }
+    //경계값 테스트
 
 
 
