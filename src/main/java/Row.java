@@ -24,11 +24,11 @@ public class Row {
     }
     // todo 매직넘버 -> 래퍼 클래스
     private boolean isRight(int position){
-        return row[position] == -1;  // 매직넘버..
+        return row[position] == Direction.LEFT.getValue();  // 매직넘버..
     }
 
     private boolean isLeft(int position){
-        return row[position] == 1;
+        return row[position] == Direction.RIGHT.getValue();
     }
 
     private void validatePosition(int position){
@@ -39,8 +39,8 @@ public class Row {
 
     public void drawLine(int startPosition){
         validateDrawLinePosition(startPosition);
-        row[startPosition]=1;
-        row[startPosition+1]=-1;
+        row[startPosition]=Direction.RIGHT.getValue();
+        row[startPosition+1]=Direction.LEFT.getValue();
 
     }
 
