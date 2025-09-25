@@ -1,4 +1,4 @@
-package main.java;
+package ladder;
 
 public class Node {
     private Direction direction;
@@ -11,18 +11,6 @@ public class Node {
         return new Node(direction);
     }
 
-    public void move(Position position) {
-        if(isLeft()){
-            position.prev();
-            return;
-        }
-
-        if(isRight()){
-            position.next();
-            return;
-        }
-    }
-
     public void setRightNode(){
         direction = Direction.RIGHT;
     }
@@ -32,18 +20,18 @@ public class Node {
     }
 
     public boolean isAleadySetDirection(){
-        return !isNone();
+        return direction != Direction.NONE;
     }
 
-    private boolean isNone(){
+    public boolean isNone(){
         return direction == Direction.NONE;
     }
 
-    private boolean isRight() {
+    public boolean isRight() {
         return direction == Direction.RIGHT;
     }
 
-    private boolean isLeft() {
+    public boolean isLeft() {
         return direction == Direction.LEFT;
     }
 }

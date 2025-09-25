@@ -1,4 +1,4 @@
-package main.java;
+package ladder;
 
 public enum Direction {
     LEFT(-1),

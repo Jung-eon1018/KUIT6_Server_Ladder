@@ -1,4 +1,9 @@
-package main.java;
+package ladder.creater;
+
+import ladder.ErrorMessage;
+import ladder.GreaterThanOne;
+import ladder.Position;
+import ladder.Row;
 
 public class LadderCreater {
 
@@ -6,7 +11,7 @@ public class LadderCreater {
     private final int numberOfPerson;
 
     public LadderCreater(GreaterThanOne numberOfRows, GreaterThanOne numberOfPerson) {
-        if (numberOfRows.getNumber() <= 0) throw new IllegalArgumentException("행(층) 수는 1 이상이어야 합니다.");
+        if (numberOfRows.getNumber() <= 0) throw new IllegalArgumentException(ErrorMessage.INVALID_LADDER_POSITION.getMessage());
         this.numberOfPerson = numberOfPerson.getNumber();
         this.rows = new Row[numberOfRows.getNumber()];
         for (int r = 0; r < numberOfRows.getNumber(); r++) {
@@ -19,6 +24,18 @@ public class LadderCreater {
     }
 
     public void drawLine(Position row, Position col){
+        validateRowIndexForDraw(row);
         rows[row.getValue()].drawLine(col);
+    }
+
+    private void validateRowIndexForDraw(Position row){
+        int r = row.getValue();
+        if (r < 0 || r >= rows.length) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_DRAW_POSITION.getMessage());
+        }
+    }
+
+    public int getNumberOfPerson() {
+        return numberOfPerson;
     }
 }
