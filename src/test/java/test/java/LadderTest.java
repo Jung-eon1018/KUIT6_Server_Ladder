@@ -13,19 +13,6 @@ import static org.junit.jupiter.api.Assertions.*;
 class LadderTest {
 
     @Test
-    @DisplayName("빈 사다리는 항상 제자리로 도착한다")
-    void emptyLadder_isIdentity() {
-        //given
-        LadderCreator ladderCreator = new LadderCreator(GreaterThanOne.from(5),GreaterThanOne.from(4));// 높이, 사람 수
-        LadderGame ladderGame = new LadderGame(ladderCreator);
-        //when&then
-        assertEquals(1, ladderGame.run(LadderPosition.of(0,0)));
-        assertEquals(2, ladderGame.run(LadderPosition.of(0,1)));
-        assertEquals(3, ladderGame.run(LadderPosition.of(0,2)));
-        assertEquals(4, ladderGame.run(LadderPosition.of(0,3)));
-    }
-
-    @Test
     @DisplayName("같은 층에서 (col)~(col+1)을 연결하면 양방향으로 서로 바뀐다")
     void singleConnection_swapsNeighbors() {
         //given

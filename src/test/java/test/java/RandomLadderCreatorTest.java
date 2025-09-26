@@ -33,5 +33,25 @@ public class RandomLadderCreatorTest {
         assertThat(actual).isEqualTo(expected);
     }
 
+    @Test
+    @DisplayName("랜덤 사다리는 연속된 선을 생성할 수 없다")
+    void randomLadder_has_no_sequence_lines() {
+        // given
+        LadderSize size = new LadderSize(GreaterThanOne.from(12), GreaterThanOne.from(8));
+        long seed = 4242L;
+        LadderGame game = LadderGameFactory.randomLadderGame(size, seed);
 
-}
+        // when & then
+        Row[] rows = game.getRows();
+        for (int r = 0; r < rows.length; r++) {
+            String line = rows[r].renderLine(null);
+            assertThat(line.contains("-1 -1"))
+                    .as("row %s 에 연속 가로선이 생성됨: [%s]", r, line)
+                    .isFalse();
+        }
+    }
+
+    }
+
+
+
