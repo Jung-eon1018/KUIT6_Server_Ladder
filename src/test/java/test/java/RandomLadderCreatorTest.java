@@ -29,6 +29,7 @@ public class RandomLadderCreatorTest {
         }
         int expected = size.targetLines();
 
+
         //then
         assertThat(actual).isEqualTo(expected);
     }
