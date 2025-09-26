@@ -33,6 +33,8 @@ public class RandomLadderCreatorTest {
         assertThat(actual).isEqualTo(expected);
     }
 
+
+
     @Test
     @DisplayName("랜덤 사다리는 연속된 선을 생성할 수 없다")
     void randomLadder_has_no_sequence_lines() {
