@@ -1,10 +1,10 @@
 package test.java;
 
-import ladder.GreaterThanOne;
-import ladder.LadderPosition;
-import ladder.creater.LadderCreater;
-import ladder.LadderGame;
-import ladder.Position;
+import ladder.util.GreaterThanOne;
+import ladder.position.LadderPosition;
+import ladder.creator.LadderCreator;
+import ladder.core.LadderGame;
+import ladder.position.Position;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -16,8 +16,8 @@ class LadderTest {
     @DisplayName("빈 사다리는 항상 제자리로 도착한다")
     void emptyLadder_isIdentity() {
         //given
-        LadderCreater ladderCreater = new LadderCreater(GreaterThanOne.from(5),GreaterThanOne.from(4));// 높이, 사람 수
-        LadderGame ladderGame = new LadderGame(ladderCreater);
+        LadderCreator ladderCreator = new LadderCreator(GreaterThanOne.from(5),GreaterThanOne.from(4));// 높이, 사람 수
+        LadderGame ladderGame = new LadderGame(ladderCreator);
         //when&then
         assertEquals(1, ladderGame.run(LadderPosition.of(0,0)));
         assertEquals(2, ladderGame.run(LadderPosition.of(0,1)));
@@ -29,10 +29,10 @@ class LadderTest {
     @DisplayName("같은 층에서 (col)~(col+1)을 연결하면 양방향으로 서로 바뀐다")
     void singleConnection_swapsNeighbors() {
         //given
-        LadderCreater ladderCreater = new LadderCreater(GreaterThanOne.from(2), GreaterThanOne.from(3));
-        LadderGame ladderGame = new LadderGame(ladderCreater);
+        LadderCreator ladderCreator = new LadderCreator(GreaterThanOne.from(2), GreaterThanOne.from(3));
+        LadderGame ladderGame = new LadderGame(ladderCreator);
 
-        ladderCreater.drawLine(Position.from(0), Position.from(0)); // row0: 1-2 연결
+        ladderCreator.drawLine(Position.from(0), Position.from(0)); // row0: 1-2 연결
 
         //when&then
         assertEquals(2, ladderGame.run(LadderPosition.of(0,0))); // 1→2
@@ -44,7 +44,7 @@ class LadderTest {
     @DisplayName("같은 row에서 연속 가로선은 금지된다")
     void noSequenceDrawLineInSameRow(){
         //given
-        LadderCreater ladderCreater = new LadderCreater(GreaterThanOne.from(2), GreaterThanOne.from(5));
+        LadderCreator ladderCreater = new LadderCreator(GreaterThanOne.from(2), GreaterThanOne.from(5));
 
         //when
         ladderCreater.drawLine(Position.from(0), Position.from(1));
@@ -59,9 +59,9 @@ class LadderTest {
     @DisplayName("왼쪽 연결을 우선 감지한다(오른쪽 검사 전에 왼쪽을 본다)")
     void preferLeftWhenOnRightSideOfABar() {
         //given
-        LadderCreater ladderCreater = new LadderCreater(GreaterThanOne.from(2), GreaterThanOne.from(3));
-        LadderGame ladderGame = new LadderGame(ladderCreater);
-        ladderCreater.drawLine(Position.from(0), Position.from(0)); // row0: 1-2
+        LadderCreator ladderCreator = new LadderCreator(GreaterThanOne.from(2), GreaterThanOne.from(3));
+        LadderGame ladderGame = new LadderGame(ladderCreator);
+        ladderCreator.drawLine(Position.from(0), Position.from(0)); // row0: 1-2
 
 
         //when
@@ -75,10 +75,10 @@ class LadderTest {
     @DisplayName("오른쪽에 선이 있으면 오른쪽으로, 왼쪽에 선이 있으면 왼쪽으로 이동한다")
     void moveLeftOrRightPerRow() {
         //given
-        LadderCreater ladderCreater = new LadderCreater(GreaterThanOne.from(2), GreaterThanOne.from(3));
-        LadderGame ladderGame = new LadderGame(ladderCreater);
-        ladderCreater.drawLine(Position.from(0), Position.from(0)); // row0: 1-2
-        ladderCreater.drawLine(Position.from(1), Position.from(1)); // row1: 2-3
+        LadderCreator ladderCreator = new LadderCreator(GreaterThanOne.from(2), GreaterThanOne.from(3));
+        LadderGame ladderGame = new LadderGame(ladderCreator);
+        ladderCreator.drawLine(Position.from(0), Position.from(0)); // row0: 1-2
+        ladderCreator.drawLine(Position.from(1), Position.from(1)); // row1: 2-3
 
         //when
         int from1 = ladderGame.run(LadderPosition.of(0,0)); // row0: 1→2, row1: 2→3  => 3

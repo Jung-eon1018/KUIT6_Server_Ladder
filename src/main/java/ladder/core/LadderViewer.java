@@ -1,4 +1,6 @@
-package ladder;
+package ladder.core;
+
+import ladder.position.LadderPosition;
 
 public class LadderViewer {
     private final StringBuilder out = new StringBuilder();

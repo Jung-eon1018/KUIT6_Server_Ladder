@@ -1,14 +1,14 @@
 package test.java;
 
-import ladder.GreaterThanOne;
-import ladder.creater.LadderCreater;
+import ladder.util.GreaterThanOne;
+import ladder.creator.LadderCreator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 
-public class LadderCreaterTest {
+public class LadderCreatorTest {
 
     @Test
     @DisplayName("사다리 생성 확인")
@@ -18,10 +18,10 @@ public class LadderCreaterTest {
         GreaterThanOne numberOfPerson = GreaterThanOne.from(3);
 
         //when
-        LadderCreater ladderCreater = new LadderCreater(numberOfRow, numberOfPerson);
+        LadderCreator ladderCreator = new LadderCreator(numberOfRow, numberOfPerson);
 
         //then
-        assertThat(ladderCreater).isNotNull();
+        assertThat(ladderCreator).isNotNull();
 
     }
 

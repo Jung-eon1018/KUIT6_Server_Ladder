@@ -1,8 +1,7 @@
 package test.java;
 
-import ladder.Direction;
-import ladder.Node;
-import ladder.Position;
+import ladder.core.Direction;
+import ladder.core.Node;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

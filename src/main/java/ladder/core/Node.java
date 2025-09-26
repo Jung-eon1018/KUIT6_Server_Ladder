@@ -1,4 +1,4 @@
-package ladder;
+package ladder.core;
 
 public class Node {
     private Direction direction;

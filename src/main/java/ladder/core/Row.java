@@ -1,4 +1,9 @@
-package ladder;
+package ladder.core;
+
+import ladder.exception.ErrorMessage;
+import ladder.position.LadderPosition;
+import ladder.position.Position;
+import ladder.util.GreaterThanOne;
 
 public class Row {
 
@@ -43,9 +48,6 @@ public class Row {
         }
     }
 
-    private boolean isInvalidPosition(Position position) {
-        return position.isBiggerThan(nodes.length -1);
-    }
 
     public void drawLine(Position startPosition){
         int i = startPosition.getValue();
@@ -60,32 +62,13 @@ public class Row {
 
     }
 
-    private void setDirectionBetweenNextPosition(Position position){
-        nodes[position.getValue()].setRightNode();
-        position.next();
-        nodes[position.getValue()].setLeftNode();
-    }
-
-    private void validateDrawLinePosition(Position startPosition){
-        int i = startPosition.getValue();
-
-        if (i < 0 || i >= nodes.length) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_DRAW_POSITION.getMessage());
+    public int countLines() {
+        int cnt = 0;
+        for (int i = 0; i < nodes.length - 1; i++) {
+            if (nodes[i].isRight()) cnt++; // 시작점만 센다
         }
-        if (i == nodes.length - 1) { // 우측 이웃 없음
-            throw new IllegalArgumentException(ErrorMessage.INVALID_DRAW_POSITION.getMessage());
-        }
-        if (nodes[i].isAleadySetDirection() || nodes[i + 1].isAleadySetDirection()) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_DRAW_POSITION.getMessage());
-        }
+        return cnt;
     }
 
-    private boolean  isLineAtIndex(int idx){
-        return nodes[idx].isAleadySetDirection();
-    }
-
-    private boolean isLineAtPosition(Position position){
-        return nodes[position.getValue()].isAleadySetDirection();
-    }
 
 }

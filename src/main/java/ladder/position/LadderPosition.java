@@ -1,4 +1,4 @@
-package ladder;
+package ladder.position;
 
 public final class LadderPosition {
     private final int row; // y
